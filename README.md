@@ -1,6 +1,7 @@
 # Swordle
 
 Swordle is a Wordle-like game made by stephan, using C++17 and RAYLIB 4.0  
+Raylib: https://www.raylib.com/  
 Wordle explained: https://en.wikipedia.org/wiki/Wordle
 
 **Feature list:**
