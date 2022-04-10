@@ -3,6 +3,8 @@
 
 void gameloop();
 
+Camera2D cam = {0};
+
 std::vector<std::string> words = {"", "", "", "", "", ""};
 std::vector<std::string> words_used;
 std::vector<char> chars_available = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -10,17 +12,22 @@ std::string word = get_word();
 int current = 0;
 bool played;
 bool finished;
+bool audio = true;
 
 bool info() {
-    int width = GetScreenWidth();
-    int height = GetScreenHeight();
-
-    Rectangle back{width / 2 - 150, height - (IsWindowFullscreen() ? 95 : 105), 300, 75};
+    int width = GetMonitorWidth(0);
+    int height = GetMonitorHeight(0);
 
     while (!WindowShouldClose()) {
+        Rectangle back{width / 2 - 150, height - (IsWindowFullscreen() ? 190 : 200), 300, 75};
+        Rectangle full{width / 2 - 500, height - (IsWindowFullscreen() ? 190 : 200), 300, 75};
+        Rectangle aud{width / 2 + 200, height - (IsWindowFullscreen() ? 190 : 200), 300, 75};
+
         BeginDrawing();
 
         ClearBackground(WHITE);
+
+        BeginMode2D(cam);
 
         DrawText("Game Info", width / 2 - MeasureText("Game Info", 90) / 2, 20, 90, BLACK);
         DrawText("Wordle-Like Game in C++ using RAYLIB", width / 2 - MeasureText("Wordle-Like Game in C++ using RAYLIB", 35) / 2, 130, 35, BLACK);
@@ -40,18 +47,39 @@ bool info() {
         DrawText("G", width / 2 - 620, 444, 60, BLUE);
         DrawText("- The word is placed in the right spot and it contains the word > 1 TIMES", width / 2 - 550, 462, 30, BLACK);
 
-        if (GuiButton(back, "back") && 1)
+        if (GuiButton(back, "back")) {
+            if (audio)
+                PlaySound(sounds::button);
+            EndMode2D();
+            EndDrawing();
             gameloop();
+        }
+
+        if (GuiButton(full, "fullscreen")) {
+            if (audio)
+                PlaySound(sounds::button);
+            ToggleFullscreen();
+        }
+
+        if (GuiButton(aud, "audio")) {
+            audio = !audio;
+            if (audio)
+                PlaySound(sounds::button);
+        }
+
+        EndMode2D();
 
         EndDrawing();
     }
 
-    return true;
+    CloseWindow();
+    CloseAudioDevice();
+    exit(0);
 }
 
 void gameloop() {
-    int width = GetScreenWidth();
-    int height = GetScreenHeight();
+    int width = GetMonitorWidth(0);
+    int height = GetMonitorHeight(0);
 
     Rectangle infob{width - 310,
                     (IsWindowFullscreen() ? 10 : 20), 300, 75};
@@ -64,14 +92,27 @@ void gameloop() {
 
         ClearBackground(WHITE);
 
-        DrawText("SWORDLE - made by stephan", width / 2 - MeasureText("SWORDLE - made by stephan", 40) / 2, height - 60, 40, BLACK);
+        BeginMode2D(cam);
 
-        if (GuiButton(infob, "info") && 1)
-            if (info())
-                break;
+        DrawText("SWORDLE - made by stephan", width / 2 - MeasureText("SWORDLE - made by stephan", 40) / 2, height - (IsWindowFullscreen() ? 60 : 70), 40, BLACK);
 
-        if (GuiButton(quitb, "quit") && 1)
-            break;
+        if (GuiButton(infob, "info")) {
+            if (audio)
+                PlaySound(sounds::button);
+            EndMode2D();
+            EndDrawing();
+            info();
+        }
+
+        if (GuiButton(quitb, "quit")) {
+            if (audio)
+                PlaySound(sounds::button);
+            EndMode2D();
+            EndDrawing();
+            CloseWindow();
+            CloseAudioDevice();
+            exit(0);
+        }
 
         DrawRectangleLines(width / 2 - 351, height / 2 - 301, 702, 602, BLACK);
         DrawRectangle(width / 2 - 350, height / 2 - 300, 700, 600, LIGHTGRAY);
@@ -102,9 +143,11 @@ void gameloop() {
                                         chars_available.erase(chars_available.begin() + i);
                             current++;
                             current = std::clamp(current, 0, 5);
-                            PlaySound(sounds::good);
+                            if (audio)
+                                PlaySound(sounds::good);
                         } else {
-                            PlaySound(sounds::invalid);
+                            if (audio)
+                                PlaySound(sounds::invalid);
                             DrawText(("invalid: " + words[current]).c_str(), width / 2 - MeasureText(("invalid: " + words[current]).c_str(), 60) / 2, 15, 60, RED);
                             std::this_thread::sleep_for(std::chrono::milliseconds(500));
                         }
@@ -136,7 +179,8 @@ void gameloop() {
                 if (!played) {
                     if (std::count(words_used.begin(), words_used.end(), word)) {
                         GuiDisable();
-                        PlaySound(sounds::won);
+                        if (audio)
+                            PlaySound(sounds::won);
                         finished = true;
                         played = true;
                         continue;
@@ -144,7 +188,8 @@ void gameloop() {
 
                     if (words_used.size() == 6) {
                         GuiDisable();
-                        PlaySound(sounds::lost);
+                        if (audio)
+                            PlaySound(sounds::lost);
                         finished = true;
                         played = true;
                         continue;
@@ -164,6 +209,8 @@ void gameloop() {
             DrawText("Press ENTER to play again", width / 2 - MeasureText("Press ENTER to play again", 60) / 2, height / 2 - 30, 60, BLACK);
 
             if (IsKeyPressed(KEY_ENTER)) {
+                if (audio)
+                    PlaySound(sounds::button);
                 GuiEnable();
                 finished = false;
                 played = false;
@@ -175,6 +222,12 @@ void gameloop() {
             }
         }
 
+        EndMode2D();
+
         EndDrawing();
     }
+
+    CloseWindow();
+    CloseAudioDevice();
+    exit(0);
 }

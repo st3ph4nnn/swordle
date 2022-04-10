@@ -14,19 +14,21 @@
 #include <utility>
 #include <vector>
 
+#include "include/SFX/button.hpp"
 #include "include/SFX/good.hpp"
 #include "include/SFX/invalid.hpp"
 #include "include/SFX/lost.hpp"
 #include "include/SFX/won.hpp"
 
 namespace sounds {
-    Sound good, invalid, lost, won;
+    Sound good, invalid, lost, won, button;
     void init() {
         InitAudioDevice();
         good = LoadSoundFromWave(LoadWaveFromMemory(".wav", goods, sizeof(goods)));
         lost = LoadSoundFromWave(LoadWaveFromMemory(".wav", losts, sizeof(losts)));
         won = LoadSoundFromWave(LoadWaveFromMemory(".wav", wons, sizeof(wons)));
         invalid = LoadSoundFromWave(LoadWaveFromMemory(".wav", invalids, sizeof(invalids)));
+        button = LoadSoundFromWave(LoadWaveFromMemory(".wav", clicks, sizeof(clicks)));
     }
 }
 
@@ -64,7 +66,7 @@ Color get_color(int pos, char x, std::string y, std::string z) {
     if (z[pos] == y[pos]) {
         temp = DARKGREEN;
         if (std::count(y.begin(), y.end(), x) > 1)
-            temp = BLUE;
+            temp = YELLOW;
     }
 
     return temp;
