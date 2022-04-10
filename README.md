@@ -22,6 +22,11 @@ After that, extract it in a directory and open swordle.exe
 Yes you can, but as for now, the wordlist **MUST** have 5353 lines, or else the game might break.  
 Edit the wordlist at your own risk.
 
+# KNOWN ISSUES
+
+The game can only be ran with aspect ratio 16:9, since there is  
+an issue with scaling too and im lazy to fix it
+
 # FOR DEVELOPERS
 
 In order to properly build the game, you will need:
