@@ -3,8 +3,6 @@
 
 void gameloop();
 
-Camera2D cam = {0};
-
 std::vector<std::string> words = {"", "", "", "", "", ""};
 std::vector<std::string> words_used;
 std::vector<char> chars_available = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -48,6 +46,7 @@ bool info() {
         if (GuiButton(back, "back")) {
             if (audio)
                 PlaySound(sounds::button);
+
             EndDrawing();
             gameloop();
         }
@@ -55,6 +54,7 @@ bool info() {
         if (GuiButton(full, "fullscreen")) {
             if (audio)
                 PlaySound(sounds::button);
+
             ToggleFullscreen();
         }
 
@@ -93,11 +93,27 @@ void gameloop() {
             continue;
         }
 
+        DrawText("press DELETE to reset", width / 2 - MeasureText("press DELETE to reset", 40) / 2, 20, 40, BLACK);
+
+        if (IsKeyPressed(KEY_DELETE)) {
+            if (audio)
+                PlaySound(sounds::button);
+
+            finished = false;
+            played = false;
+            words = {"", "", "", "", "", ""};
+            words_used = {};
+            chars_available = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+            current = 0;
+            word = get_word();
+        }
+
         DrawText("SWORDLE - made by stephan", width / 2 - MeasureText("SWORDLE - made by stephan", 40) / 2, height - (IsWindowFullscreen() ? 60 : 70), 40, BLACK);
 
         if (GuiButton(infob, "info")) {
             if (audio)
                 PlaySound(sounds::button);
+
             EndDrawing();
             info();
         }
@@ -105,6 +121,7 @@ void gameloop() {
         if (GuiButton(quitb, "quit")) {
             if (audio)
                 PlaySound(sounds::button);
+
             EndDrawing();
             CloseWindow();
             CloseAudioDevice();
@@ -160,6 +177,7 @@ void gameloop() {
                     break;
                 }
             }
+
             DrawText("available", 20, 10, 30, BLUE);
             for (int j = 0; j < chars_available.size() / 2; j++)
                 draw_text(chars_available[j], 20, 40 + j * 55, 50, BLACK);
@@ -205,9 +223,10 @@ void gameloop() {
             DrawText(("The word was: " + word).c_str(), width / 2 - MeasureText(("The word was: " + word).c_str(), 80) / 2, height / 2 - 200, 80, BLACK);
             DrawText("Press ENTER to play again", width / 2 - MeasureText("Press ENTER to play again", 60) / 2, height / 2 - 30, 60, BLACK);
 
-            if (IsKeyPressed(KEY_ENTER)) {
+            if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(335)) {
                 if (audio)
                     PlaySound(sounds::button);
+
                 GuiEnable();
                 finished = false;
                 played = false;

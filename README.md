@@ -9,7 +9,7 @@ Wordle explained: https://en.wikipedia.org/wiki/Wordle
 
 **Feature list:**
 - Changeable wordlist (see FAQ)
-- 5353 5 letter words default to be used from the english dictionary
+- 5761 5 letter words default to be used from the english dictionary
 - Some Sound Effects
 - A little bit easier than the real wordle
 
@@ -25,13 +25,15 @@ then play the game using ./game in the same directory.
 
 2. Can i change the wordlist?
 
-Yes you can, but as for now, the wordlist **MUST** have 5760 lines, or else the game might break.  
+Yes you can, but as for now, the wordlist **MUST** have 5761 lines, or else the game might break.  
 Edit the wordlist at your own risk.
 
 3. Why its not picking any words?
 
-If its not picking any words, try replacing the wordlist file. Remember, the list  
-must have 5757 LINES and be in the same DIRECTORY as the game!
+The game will warn you if there is no list available.  
+If you however have the list, edit it, copy everything inside, delete, save it,  
+open it again, paste, save again, and issues should be gone. Remember, the list  
+must have 5761 LINES and be in the same DIRECTORY as the game!
 
 # Known issues
 

@@ -37,7 +37,7 @@ char get_key(int key) {
         return (char)key;
 
     if (key == 259) return '-';
-    if (key == 257) return '+';
+    if (key == 257 || key == 335) return '+';
 
     return '\0';
 }
@@ -95,7 +95,7 @@ std::string get_word() {
     }
 
     std::mt19937 mersenne{static_cast<std::mt19937::result_type>(std::time(nullptr))};
-    std::uniform_int_distribution<> rng{1, 5760};
+    std::uniform_int_distribution<> rng{1, 5761};
 
     int x = rng(mersenne);
 
