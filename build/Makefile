@@ -9,5 +9,3 @@ ifeq ($(OS),LINUX)
 	$(eval INCLUDE=-lraylib -lGL -lm -lpthread -ldl -lrt -lX11)
 endif
 	$(COMPILER) ../main.cpp -o $(OUTPUT) $(FLAGS) $(INCLUDE)
-	cp ./wordlist linux/
-	cp ./wordlist windows/

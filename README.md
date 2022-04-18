@@ -18,12 +18,20 @@ Wordle explained: https://en.wikipedia.org/wiki/Wordle
 1. How can i play the game?
 
 Go to the releases page on the right side of the page, and download the latest .ZIP file  
-After that, extract it in a directory and open swordle.exe
+After that, extract it in a directory and open swordle.exe (if you are on windows);
+
+If you are on linux, open a terminal in the directory, type **chmod +x game**,  
+then play the game using ./game in the same directory.
 
 2. Can i change the wordlist?
 
-Yes you can, but as for now, the wordlist **MUST** have 5353 lines, or else the game might break.  
+Yes you can, but as for now, the wordlist **MUST** have 5757 lines, or else the game might break.  
 Edit the wordlist at your own risk.
+
+3. Why its not picking any words?
+
+If its not picking any words, try replacing the wordlist file. Remember, the list  
+must have 5757 LINES and be in the same DIRECTORY as the game!
 
 # Known issues
 
@@ -41,6 +49,8 @@ In order to properly build the game, you will need:
 
 After that, go in to the **build** directory and type in the terminal **mingw32-make.exe OS=WINDOWS**  
 Wait a few seconds, and your game should be compiled in the directory 'windows/'
+
+! Remember to copy wordlist to the folder you have built for! (its very important!)
 
 ## Linux
 
@@ -69,4 +79,6 @@ After that, you will need to do the following commands in a temporary directory:
 
 Great. Now you are able to go download the game source, and go in to the build/ folder,  
 and type **make OS=LINUX**
+
+! Remember to copy wordlist to the folder you have built for! (its very important!)
 
