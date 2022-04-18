@@ -3,11 +3,10 @@
 
 int main() {
     SetTraceLogLevel(LOG_ERROR);
-    SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
+    SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_MAXIMIZED);
     InitWindow(0, 0, "swordle");
     sounds::init();
-    cam.zoom = GetScreenWidth() / 1366.f;
-    SetCam(cam);
+
     ToggleFullscreen();
 
     GuiSetStyle(DEFAULT, TEXT_SIZE, 60);

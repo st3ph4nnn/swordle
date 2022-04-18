@@ -1271,12 +1271,6 @@ void GuiUnlock(void) { guiLocked = false; }
 // Check if gui is locked (global state)
 bool GuiIsLocked(void) { return guiLocked; }
 
-Camera2D camera;
-
-void SetCam(Camera2D CAM) {
-    camera = CAM;
-}
-
 // Set gui controls alpha global state
 void GuiFade(float alpha) {
     if (alpha < 0.0f)
@@ -1582,7 +1576,7 @@ bool GuiButton(Rectangle bounds, const char *text) {
     // Update control
     //--------------------------------------------------------------------
     if ((state != GUI_STATE_DISABLED) && !guiLocked) {
-        Vector2 mousePoint = GetScreenToWorld2D(GetMousePosition(), camera);
+        Vector2 mousePoint = GetMousePosition();
 
         // Check button state
         if (CheckCollisionPointRec(mousePoint, bounds)) {

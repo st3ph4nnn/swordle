@@ -27,30 +27,27 @@ bool info() {
 
         ClearBackground(WHITE);
 
-        BeginMode2D(cam);
-
         DrawText("Game Info", width / 2 - MeasureText("Game Info", 90) / 2, 20, 90, BLACK);
         DrawText("Wordle-Like Game in C++ using RAYLIB", width / 2 - MeasureText("Wordle-Like Game in C++ using RAYLIB", 35) / 2, 130, 35, BLACK);
 
         DrawText("G", width / 2 - 620, 188, 60, DARKGREEN);
-        DrawText("- The word is placed in the right spot and it contains the word once", width / 2 - 550, 200, 30, BLACK);
+        DrawText("- The letter is placed in the right spot and it contains the word once", width / 2 - 550, 200, 30, BLACK);
 
         DrawText("G", width / 2 - 620, 252, 60, DARKBLUE);
-        DrawText("- The word is NOT placed in the right spot and it contains the word once", width / 2 - 550, 270, 30, BLACK);
+        DrawText("- The letter is NOT placed in the right spot and it contains the word once", width / 2 - 550, 270, 30, BLACK);
 
         DrawText("G", width / 2 - 620, 316, 60, DARKPURPLE);
-        DrawText("- The word is NOT placed in the right spot and it contains the word TWICE", width / 2 - 550, 334, 30, BLACK);
+        DrawText("- The letter is NOT placed in the right spot and it contains the word TWICE", width / 2 - 550, 334, 30, BLACK);
 
         DrawText("G", width / 2 - 620, 380, 60, PURPLE);
-        DrawText("- The word is NOT placed in the right spot and it contains the word THRICE", width / 2 - 550, 398, 30, BLACK);
+        DrawText("- The letter is NOT placed in the right spot and it contains the word THRICE", width / 2 - 550, 398, 30, BLACK);
 
-        DrawText("G", width / 2 - 620, 444, 60, BLUE);
-        DrawText("- The word is placed in the right spot and it contains the word > 1 TIMES", width / 2 - 550, 462, 30, BLACK);
+        DrawText("G", width / 2 - 620, 444, 60, YELLOW);
+        DrawText("- The letter is placed in the right spot and it contains the word > 1 TIMES", width / 2 - 550, 462, 30, BLACK);
 
         if (GuiButton(back, "back")) {
             if (audio)
                 PlaySound(sounds::button);
-            EndMode2D();
             EndDrawing();
             gameloop();
         }
@@ -67,8 +64,6 @@ bool info() {
                 PlaySound(sounds::button);
         }
 
-        EndMode2D();
-
         EndDrawing();
     }
 
@@ -82,24 +77,21 @@ void gameloop() {
     int height = GetMonitorHeight(0);
 
     Rectangle infob{width - 310,
-                    (IsWindowFullscreen() ? 10 : 20), 300, 75};
+                    10, 300, 75};
 
     Rectangle quitb{width - 310,
-                    (IsWindowFullscreen() ? 95 : 105), 300, 75};
+                    95, 300, 75};
 
     while (!WindowShouldClose()) {
         BeginDrawing();
 
         ClearBackground(WHITE);
 
-        BeginMode2D(cam);
-
         DrawText("SWORDLE - made by stephan", width / 2 - MeasureText("SWORDLE - made by stephan", 40) / 2, height - (IsWindowFullscreen() ? 60 : 70), 40, BLACK);
 
         if (GuiButton(infob, "info")) {
             if (audio)
                 PlaySound(sounds::button);
-            EndMode2D();
             EndDrawing();
             info();
         }
@@ -107,7 +99,6 @@ void gameloop() {
         if (GuiButton(quitb, "quit")) {
             if (audio)
                 PlaySound(sounds::button);
-            EndMode2D();
             EndDrawing();
             CloseWindow();
             CloseAudioDevice();
@@ -221,8 +212,6 @@ void gameloop() {
                 word = get_word();
             }
         }
-
-        EndMode2D();
 
         EndDrawing();
     }
