@@ -48,17 +48,17 @@ In order to properly build the game, you will need:
 
 - An IDE of choice
 - A terminal
-- Latest G++ (sudo apt install g++)
+- Latest g++ version (tested on 7.5.0)
 
 After that, install these:
 
 ### Ubuntu-based
 
-**sudo apt install git libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev**
+***sudo apt install git libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev***
 
 ### Redhat-based
 
-**sudo dnf install git alsa-lib-devel mesa-libGL-devel libX11-devel libXrandr-devel libXi-devel libXcursor-devel libXinerama-devel**
+***sudo dnf install git alsa-lib-devel mesa-libGL-devel libX11-devel libXrandr-devel libXi-devel libXcursor-devel libXinerama-devel***
 
 After that, you will need to do the following commands in a temporary directory:
 
