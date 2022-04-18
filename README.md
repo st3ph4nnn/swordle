@@ -9,7 +9,7 @@ Wordle explained: https://en.wikipedia.org/wiki/Wordle
 
 **Feature list:**
 - Changeable wordlist (see FAQ)
-- 5353 5 letter words default to be used from the english dictionary
+- 5757 5 letter words default to be used from the english dictionary
 - Some Sound Effects
 - A little bit easier than the real wordle
 
