@@ -87,6 +87,12 @@ void gameloop() {
 
         ClearBackground(WHITE);
 
+        if (word == "wordlist") {
+            DrawText("ERROR: the word list wasnt found!", width / 2 - MeasureText("ERROR: the word list wasnt found!", 60) / 2, height / 2 - 30, 60, RED);
+            EndDrawing();
+            continue;
+        }
+
         DrawText("SWORDLE - made by stephan", width / 2 - MeasureText("SWORDLE - made by stephan", 40) / 2, height - (IsWindowFullscreen() ? 60 : 70), 40, BLACK);
 
         if (GuiButton(infob, "info")) {

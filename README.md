@@ -25,7 +25,7 @@ then play the game using ./game in the same directory.
 
 2. Can i change the wordlist?
 
-Yes you can, but as for now, the wordlist **MUST** have 5757 lines, or else the game might break.  
+Yes you can, but as for now, the wordlist **MUST** have 5760 lines, or else the game might break.  
 Edit the wordlist at your own risk.
 
 3. Why its not picking any words?

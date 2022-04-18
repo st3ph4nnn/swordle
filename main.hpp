@@ -88,8 +88,14 @@ bool contains_file(std::string word) {
 
 std::string get_word() {
     std::ifstream fin("wordlist");
+
+    if (!fin.is_open()) {
+        fin.close();
+        return "wordlist";
+    }
+
     std::mt19937 mersenne{static_cast<std::mt19937::result_type>(std::time(nullptr))};
-    std::uniform_int_distribution<> rng{1, 5757};
+    std::uniform_int_distribution<> rng{1, 5760};
 
     int x = rng(mersenne);
 
