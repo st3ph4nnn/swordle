@@ -49,7 +49,7 @@ In order to properly build the game, you will need:
 - Latest MinGW x64 DevKit: https://github.com/skeeto/w64devkit (add it to path)
 - A terminal
 
-After that, go in to the **build** directory and type in the terminal **mingw32-make.exe OS=WINDOWS**  
+After that, go in to the **build** directory and type in the terminal **mingw32-make.exe**  
 Wait a few seconds, and your game should be compiled in the directory 'windows/'
 
 ! Remember to copy wordlist to the folder you have built for! (its very important!)
@@ -76,7 +76,7 @@ After that, you will need to do the following commands in a temporary directory:
 
 - git clone https://github.com/raysan5/raylib.git raylib
 - cd raylib/src/
-- make PLATFORM=PLATFORM_DESKTOP
+- make PLATFORM=PLATFORM_DESKTOP (if you want to support older hardware, type: "GRAPHICS=GRAPHICS_API_OPENGL_31" here)
 - sudo make install
 
 Great. Now you are able to go download the game source, and go in to the build/ folder,  
