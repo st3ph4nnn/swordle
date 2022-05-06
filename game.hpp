@@ -162,8 +162,7 @@ void gameloop() {
                         } else {
                             if (audio)
                                 PlaySound(sounds::invalid);
-                            DrawText(("invalid: " + words[current]).c_str(), width / 2 - MeasureText(("invalid: " + words[current]).c_str(), 60) / 2, 15, 60, RED);
-                            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                            std::this_thread::sleep_for(std::chrono::milliseconds(250));
                         }
                     }
                     break;
