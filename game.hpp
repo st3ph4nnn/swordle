@@ -13,8 +13,8 @@ bool finished;
 bool audio = true;
 
 bool info() {
-    int width = GetMonitorWidth(0);
-    int height = GetMonitorHeight(0);
+    int width = GetScreenWidth();
+    int height = GetScreenHeight();
 
     while (!WindowShouldClose()) {
         Rectangle back{width / 2 - 150, height - (IsWindowFullscreen() ? 190 : 200), 300, 75};
@@ -73,8 +73,8 @@ bool info() {
 }
 
 void gameloop() {
-    int width = GetMonitorWidth(0);
-    int height = GetMonitorHeight(0);
+    int width = GetScreenWidth();
+    int height = GetScreenHeight();
 
     Rectangle infob{width - 310,
                     10, 300, 75};

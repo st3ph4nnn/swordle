@@ -562,9 +562,9 @@ RAYGUIAPI bool GuiCheckIconPixel(int iconId, int x, int y); // Check icon pixel 
 
 #if defined(RAYGUI_IMPLEMENTATION)
 
-#include <math.h>   // Required for: roundf() [GuiColorPicker()]
+#include <math.h> // Required for: roundf() [GuiColorPicker()]
 #include <stdarg.h> // Required for: va_list, va_start(), vfprintf(), va_end() [TextFormat()]
-#include <stdio.h>  // Required for: FILE, fopen(), fclose(), fprintf(), feof(), fscanf(), vsprintf() [GuiLoadStyle(), GuiLoadIcons()]
+#include <stdio.h> // Required for: FILE, fopen(), fclose(), fprintf(), feof(), fscanf(), vsprintf() [GuiLoadStyle(), GuiLoadIcons()]
 #include <stdlib.h> // Required for: malloc(), calloc(), free() [GuiLoadStyle(), GuiLoadIcons()]
 #include <string.h> // Required for: strlen() [GuiTextBox(), GuiTextBoxMulti(), GuiValueBox()], memset(), memcpy()
 
@@ -583,8 +583,8 @@ RAYGUIAPI bool GuiCheckIconPixel(int iconId, int x, int y); // Check icon pixel 
 
 #else // Embedded raygui icons, no external file provided
 
-#define RICON_SIZE 16            // Size of icons (squared)
-#define RICON_MAX_ICONS 256      // Maximum number of icons
+#define RICON_SIZE 16 // Size of icons (squared)
+#define RICON_MAX_ICONS 256 // Maximum number of icons
 #define RICON_MAX_NAME_LENGTH 32 // Maximum length of icon name id
 
 // Icons data is defined by bit array (every bit represents one pixel)
@@ -1133,8 +1133,8 @@ static unsigned int guiIcons[RICON_MAX_ICONS * RICON_DATA_ELEMENTS] = {
 #define RICON_SIZE 0
 #endif
 
-#define RAYGUI_MAX_CONTROLS 16      // Maximum number of standard controls
-#define RAYGUI_MAX_PROPS_BASE 16    // Maximum number of standard properties
+#define RAYGUI_MAX_CONTROLS 16 // Maximum number of standard controls
+#define RAYGUI_MAX_PROPS_BASE 16 // Maximum number of standard properties
 #define RAYGUI_MAX_PROPS_EXTENDED 8 // Maximum number of extended properties
 
 //----------------------------------------------------------------------------------
@@ -1576,10 +1576,9 @@ bool GuiButton(Rectangle bounds, const char *text) {
     // Update control
     //--------------------------------------------------------------------
     if ((state != GUI_STATE_DISABLED) && !guiLocked) {
-        Vector2 mousePoint = GetMousePosition();
-
-        // Check button state
-        if (CheckCollisionPointRec(mousePoint, bounds)) {
+        Vector2 mousepos = {GetMouseX(),
+                            GetMouseY()};
+        if (CheckCollisionPointRec(mousepos, bounds)) {
             if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
                 state = GUI_STATE_PRESSED;
             else
@@ -3961,7 +3960,7 @@ static void DrawRectangleGradientV(int posX, int posY, int width, int height, Co
 }
 
 #define TEXTSPLIT_MAX_TEXT_BUFFER_LENGTH 1024 // Size of static buffer: TextSplit()
-#define TEXTSPLIT_MAX_SUBSTRINGS_COUNT 128    // Size of static pointers array: TextSplit()
+#define TEXTSPLIT_MAX_SUBSTRINGS_COUNT 128 // Size of static pointers array: TextSplit()
 
 // Split string into multiple strings
 const char **TextSplit(const char *text, char delimiter, int *count) {

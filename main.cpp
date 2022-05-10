@@ -7,8 +7,6 @@ int main() {
     InitWindow(0, 0, "swordle");
     sounds::init();
 
-    ToggleFullscreen();
-
     GuiSetStyle(DEFAULT, TEXT_SIZE, 60);
 
     gameloop();
